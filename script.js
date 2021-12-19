@@ -42,37 +42,45 @@ function score(result){
         compScore++;
     }
 }
-const body = document.querySelector('body');
 
-const buttons = document.querySelectorAll('button');
+const body = document.querySelector('body');
+const buttons = document.querySelectorAll('button.play');
 const div = document.createElement('div');
 const scoreTracker = document.createElement('div');
 const winner = document.createElement('div');
-let playerScore,compScore;
-playerScore = compScore = 0;
+const reset = document.createElement('button');
 
-buttons.forEach((button) => {
-
-    button.addEventListener('click', () => {
-        result = playRound(button.id,computerPlay());
-        score(result);
-        div.textContent = result;
-        scoreTracker.textContent = `You currently have ${playerScore} wins,
-                                    the computer has ${compScore} wins.`
-        if(playerScore == 5 || compScore == 5){
-            playerScore == 5 ? winner.textContent = "Congrats, you win!" :
-            winner.textContent = "Aw, you lost! Better luck next time!";
-        }
-    })
-});
 
 body.appendChild(div);
 body.appendChild(scoreTracker);
 body.appendChild(winner);
-if(playerScore == 5 || compScore == 5){
-    playerScore == 5 ? winner.textContent = "Congrats, you won the match!" :
-    winner.textContent = "Aw, you lost! Better luck next time!";
+
+let playerScore,compScore;
+playerScore = compScore = 0;
+
+buttons.forEach((button) => {
+    button.addEventListener('click',gotClicked)
+});
+function gotClicked(event){
+    console.log(event.target.id)
+    result = playRound(event.target.id,computerPlay());
+    score(result);
+    div.textContent = result;
+    scoreTracker.textContent = `You currently have ${playerScore} wins,
+                                the computer has ${compScore} wins.`
+    if(playerScore == 5 || compScore == 5){
+        playerScore == 5 ? winner.textContent = "Congrats, you win!" :
+        winner.textContent = "Aw, you lost! Better luck next time!";
+        buttons.forEach((button) => {
+            button.removeEventListener('click',gotClicked);
+        });
+        reset.textContent = "Reset"
+        reset.onclick = () => location.reload();
+        body.appendChild(reset);
+        
+    }
 }
+
 /* Writing event listeners separately for each button
 const rock = document.querySelector('#Rock');
 rock.addEventListener('click', function(){
