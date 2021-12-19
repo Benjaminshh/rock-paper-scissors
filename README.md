@@ -1,4 +1,5 @@
 # rock-paper-scissors
-I am making a rock paper scissors game using javascript. <br>
-Because I am rusty programming, I am going use this project 
-as a chance to work on my programming skills. 
+View live demo here : https://benjaminshh.github.io/rock-paper-scissors/ <br>
+I made a simple rock paper scissors game using javascript. <br>
+This was mostly to practice DOM methods
+
