@@ -1,4 +1,4 @@
 # rock-paper-scissors
-I am making a rock paper scissors game using javascript. 
+I am making a rock paper scissors game using javascript. <br>
 Because I am rusty programming, I am going use this project 
 as a chance to work on my programming skills. 
